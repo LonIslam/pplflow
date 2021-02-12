@@ -1,0 +1,14 @@
+version: "2.2"
+services:
+  employees-database:
+    image: mongo:3.2.4
+    container_name: "employees-database"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+  employees-service:
+    image: employees-service-docker-image
+    ports:
+      - 8080:8080
+    links:
+      - employees-database
